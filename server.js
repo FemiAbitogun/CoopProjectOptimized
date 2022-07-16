@@ -11,19 +11,12 @@ app.use(cookieParser());
 
 
 const corsOptions ={
-   origin:'*', 
+    origin:["https://femi-abitogun-coop-project.netlify.app/"], 
    credentials:true,            
    optionSuccessStatus:200,
 }
 
 app.use(cors(corsOptions))
-
-
-
-// app.use(cors({
-//     credentials: true,
-//     origin:["https://femi-abitogun-coop-project.netlify.app/"]
-// }));
 
 const PORT = process.env.PORT || 9000
 
