@@ -12,10 +12,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    origin:["http://localhost:3000","https://femi-abitogun-coop-project.netlify.app/"]
+    origin:["https://femi-abitogun-coop-project.netlify.app/"]
 }));
 
-//https://coop-project-femiabitogun.herokuapp.com/
 const PORT = process.env.PORT || 9000
 
 // creating server..........................
