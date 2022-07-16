@@ -10,10 +10,23 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    credentials: true,
-    origin:["https://femi-abitogun-coop-project.netlify.app/"]
-}));
+
+
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
+
+
+
+// app.use(cors({
+//     credentials: true,
+//     origin:["https://femi-abitogun-coop-project.netlify.app/"]
+// }));
 
 const PORT = process.env.PORT || 9000
 
@@ -29,7 +42,7 @@ app.use('/uploads', express.static('uploads'));
 
 
 app.get('/', async (req, res) => {
-    return res.status(200).send("Server test ok....")
+    return res.status(200).send("Server test ok after edition....")
 })
 
 //login and authentication routes............
