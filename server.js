@@ -4,19 +4,21 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
+app.use(cors(corsOptions))
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
 
-
+//https://femiabitogun-coop-project.herokuapp.com/
+//https://femi-abitogun-coop-project.netlify.app/
 const corsOptions ={
-    origin:["https://femi-abitogun-coop-project.netlify.app/"], 
+    origin:"https://femi-abitogun-coop-project.netlify.app", 
    credentials:true,            
    optionSuccessStatus:200,
 }
 
-app.use(cors(corsOptions))
+
 
 const PORT = process.env.PORT || 9000
 
