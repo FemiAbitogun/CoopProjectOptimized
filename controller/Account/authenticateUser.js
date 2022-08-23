@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 
 const confirm = async (req, res) => {
     try {
-
         //console.log(req.authenticatedUserID);
         const user = await AuthorizedUsers.findById(req.authenticatedUserID);
         if (!user)
@@ -14,16 +13,13 @@ const confirm = async (req, res) => {
         return res.status(200).json({
             user,
             authorization: user.rollName
-
         })
         // res.send("ok")
     }
     catch (err) {
         res.status(400).send();
     }
-
 }
-
 
 const getAllUserAccount = async (req, res) => {
     try {
@@ -32,7 +28,6 @@ const getAllUserAccount = async (req, res) => {
             return res.status(200).json({
                 errorMessage: "can not find users"
             })
-
         return res.status(200).json(allUsers);
     }
     catch (err) {
@@ -57,8 +52,6 @@ const createUserAccount = async (req, res) => {
                 errorMessage: " not all fields has been entered"
             })
 
-
-
         const newUser = new AuthorizedUsers({
             email,  password: harshedPassword,
             firstName, lastName,roleName   
@@ -80,13 +73,11 @@ const loginUserAccount = async (req, res) => {
     try {
         const {email,password} = req.body;
         const user = await AuthorizedUsers.findOne({email:email})
-
         // console.log(req.body)
         if (!user)
             return res.status(400).json({
                 errorMessage: "invalid credentials......email"
             })
-
         const _password = await bcrypt.compare(password, user.password);
         if (!_password)
             return res.status(400).json({
@@ -96,47 +87,35 @@ const loginUserAccount = async (req, res) => {
         const token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
         res.cookie("ticket", token, {
             httpOnly: true
-            // ,secure:true,sameSite:none
+           ,secure:true,sameSite:none
         }).send();
-
-
-
     }
+
     catch (err) {
         res.status(500).json({
             errorMessage: err.message
         })
     }
-
 }
 
 
 const logOut = async (req, res) => {
-
     try {
         res.cookie("ticket", "", {
             httpOnly: true,
-            // ,secure:true,sameSite:none
+         secure:true,sameSite:none,
             expires: new Date(0)
         }).send();
     }
     catch (err) {
         console.log(err.message);
     }
-
-
 }
-
-
 // DELETE USERS
 const deleteUserAccount = async (req, res) => {
-
     try {
-
         const id = req.params.id;
         const user = await AuthorizedUsers.findByIdAndDelete(id)
-
-
         res.status(200).json(user)
     }
     catch (err) {
@@ -144,7 +123,6 @@ const deleteUserAccount = async (req, res) => {
             errorMessage: " failed to delete user from database...."
         })
     }
-
 }
 
 

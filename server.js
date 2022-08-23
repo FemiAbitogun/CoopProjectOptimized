@@ -24,7 +24,6 @@ const PORT = process.env.PORT || 9000
 app.listen(PORT, () => {
     console.log(`app listening @ port ${PORT}`)
 })
-
 const { databaseConfig } = require('./databaseConnection/databaseConfig');
 databaseConfig();
 
