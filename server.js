@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
-app.use(cors(corsOptions))
+app.use(cors(corsOptions)) 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
