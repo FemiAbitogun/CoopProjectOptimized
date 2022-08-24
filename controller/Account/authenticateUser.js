@@ -44,7 +44,7 @@ const getAllUserAccount = async (req, res) => {
 const createUserAccount = async (req, res) => {
     try {
         // email, firstName, lastName, password, roleName
-        const {email,firstName,lastName,password,roleName} = req.body;
+        const { email, firstName, lastName, password, roleName } = req.body;
         const harshedPassword = await bcrypt.hash(password, 10);
 
         if (!email || !password || !roleName)
@@ -53,8 +53,8 @@ const createUserAccount = async (req, res) => {
             })
 
         const newUser = new AuthorizedUsers({
-            email,  password: harshedPassword,
-            firstName, lastName,roleName   
+            email, password: harshedPassword,
+            firstName, lastName, roleName
         })
         const savedUser = await newUser.save();
         res.status(201).json(savedUser);
@@ -71,8 +71,8 @@ const createUserAccount = async (req, res) => {
 
 const loginUserAccount = async (req, res) => {
     try {
-        const {email,password} = req.body;
-        const user = await AuthorizedUsers.findOne({email:email})
+        const { email, password } = req.body;
+        const user = await AuthorizedUsers.findOne({ email: email })
         // console.log(req.body)
         if (!user)
             return res.status(401).json({
@@ -85,12 +85,12 @@ const loginUserAccount = async (req, res) => {
             });
 
         const token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
-        // res.cookie("ticket", token, {
-        //     httpOnly: true,
-        //    secure:true,
-        //    sameSite:none
-        // }).send();
-       return res.status(200).json(token);
+        res.cookie("ticket", token, {
+            httpOnly: true,
+           secure:true,
+           sameSite:none
+        }).send();
+       // return res.status(200).json(token);
     }
 
     catch (err) {
@@ -105,7 +105,7 @@ const logOut = async (req, res) => {
     try {
         res.cookie("ticket", "", {
             httpOnly: true,
-         secure:true,sameSite:none,
+            secure: true, sameSite: none,
             expires: new Date(0)
         }).send();
     }
