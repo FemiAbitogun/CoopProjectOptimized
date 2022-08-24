@@ -4,15 +4,14 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
-const corsOptions ={
-    origin:"https://femi-abitogun-coop-project.netlify.app", 
-   credentials:true,            
-   optionSuccessStatus:200,
-   methods: ["GET", "POST", "DELETE"],
-   origin: true
-}
-app.use(cors(corsOptions)) 
 const app = express();
+
+app.use(cors({
+    origin:"https://femi-abitogun-coop-project.netlify.app", 
+    credentials:true,            
+    optionSuccessStatus:200,
+})) 
+
 app.use(express.json());
 app.use(cookieParser());
 
