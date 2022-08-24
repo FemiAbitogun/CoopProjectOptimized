@@ -10,7 +10,8 @@ app.use(cors({
     origin:"https://femi-abitogun-coop-project.netlify.app", 
     credentials:true,            
     optionSuccessStatus:200,
-})) 
+    methods:["GET","HEAD","PUT","PATCH","POST","DELETE"]
+}));
 
 app.use(express.json());
 app.use(cookieParser());
