@@ -85,18 +85,17 @@ const loginUserAccount = async (req, res) => {
             });
 
         const token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
-        res.cookie("ticket", token, {
+        res.
+        cookie("ticket", token, {
             httpOnly: true,
            secure:true,
-           sameSite:none
+           sameSite:"none"
         }).send();
        // return res.status(200).json(token);
     }
 
     catch (err) {
-        res.status(500).json({
-            errorMessage: err.message
-        })
+        res.status(500).send(err);
     }
 }
 
