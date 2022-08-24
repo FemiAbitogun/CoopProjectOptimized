@@ -4,17 +4,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
-app.use(cors({
-    credentials:true,
-
-})) 
-const app = express();
-app.use(express.json());
-app.use(cookieParser());
-
-
-//https://femiabitogun-coop-project.herokuapp.com/
-//https://femi-abitogun-coop-project.netlify.app/
 const corsOptions ={
     origin:"https://femi-abitogun-coop-project.netlify.app", 
    credentials:true,            
@@ -22,6 +11,15 @@ const corsOptions ={
    methods: ["GET", "POST", "DELETE"],
    origin: true
 }
+app.use(cors(corsOptions)) 
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
+
+
+//https://femiabitogun-coop-project.herokuapp.com/
+//https://femi-abitogun-coop-project.netlify.app/
+
 
 
 
