@@ -75,20 +75,22 @@ const loginUserAccount = async (req, res) => {
         const user = await AuthorizedUsers.findOne({email:email})
         // console.log(req.body)
         if (!user)
-            return res.status(400).json({
+            return res.status(401).json({
                 errorMessage: "invalid credentials......email"
             })
         const _password = await bcrypt.compare(password, user.password);
         if (!_password)
-            return res.status(400).json({
+            return res.status(401).json({
                 errorMessage: "invalid credentials......pass"
             });
 
         const token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
-        res.cookie("ticket", token, {
-            httpOnly: true
-           ,secure:true,sameSite:none
-        }).send();
+        // res.cookie("ticket", token, {
+        //     httpOnly: true,
+        //    secure:true,
+        //    sameSite:none
+        // }).send();
+       return res.status(200).json(token);
     }
 
     catch (err) {
