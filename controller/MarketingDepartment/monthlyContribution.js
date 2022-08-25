@@ -46,7 +46,7 @@ const createSuscriberAccount = async (req, res) => {
         let referee2ImagePath = null;
         let customerImagePath = null;
 
-       console.log(req.files)
+      // console.log(req.files)
 
         if (req.files.customerImage) {
 
