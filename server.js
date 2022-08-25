@@ -48,6 +48,8 @@ app.use('/api/authenticateUser', require('./routes/Account/AuthenticateUsers'));
 
 /*monthly contribution */
 app.use('/api/monthlyContribution', require('./routes/Management_team/Marketing/monthlyContribution'));
+
+/*monthly contribution edit.... */
 app.use('/api/monthlyContribution/edit/', require('./routes/Management_team/Patch/monthly'));
 
 

@@ -42,8 +42,6 @@ const getSuscriberAccountById = async (req, res) => {
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
     try {
-
-
         let referee1ImagePath = null;
         let referee2ImagePath = null;
         let customerImagePath = null;
@@ -62,7 +60,6 @@ const createSuscriberAccount = async (req, res) => {
         if (req.files.referee2Image) {
             referee2ImagePath = req.files.referee2Image[0].path;
         }
-
 
         const {
             referalCode,
@@ -194,7 +191,7 @@ const createSuscriberAccount = async (req, res) => {
             errorMessage: "Process failed!!!"
         })
 
-        console.log(err.message)
+        //console.log(err.message)
     }
 
 }

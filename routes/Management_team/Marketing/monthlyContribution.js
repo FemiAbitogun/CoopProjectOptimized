@@ -7,9 +7,7 @@ const { getAllSuscriberAccount, createSuscriberAccount, deleteSuscriberAccount,
 router.get('/', auth, getAllSuscriberAccount);
 router.get('/:id', auth, getSuscriberAccountById);
 
-
-
-
+//customerImage: 
 router.post('/', upload.fields([{ name: "customerImage", maxCount: 1 }, { name: "referee1Image", maxCount: 1 }, { name: "referee2Image", maxCount: 1 }
 ]), createSuscriberAccount);
 
