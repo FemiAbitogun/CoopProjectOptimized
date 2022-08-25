@@ -104,7 +104,7 @@ const logOut = async (req, res) => {
     try {
         res.cookie("ticket", "", {
             httpOnly: true,
-            secure: true, sameSite: none,
+            secure: true, sameSite: "none",
             expires: new Date(0)
         }).send();
     }
