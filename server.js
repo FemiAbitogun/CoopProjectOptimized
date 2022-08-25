@@ -13,6 +13,7 @@ app.use(cors({
     methods:["GET","HEAD","PUT","PATCH","POST","DELETE"]
 }));
 
+app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -32,7 +33,6 @@ app.listen(PORT, () => {
 const { databaseConfig } = require('./databaseConnection/databaseConfig');
 databaseConfig();
 
-app.use('/uploads', express.static('uploads'));
 
 
 app.get('/', async (req, res) => {
