@@ -51,8 +51,8 @@ const createSuscriberAccount = async (req, res) => {
         if (req.files.customerImage) {
            // console.log(req.files.customerImage)
             customerImagePath = req.files.customerImage[0].path;
-           // let result = await cloudinary.uploader.upload(req.files.customerImage[0]);
-            //console.log("cloudinary :" + result)
+            let result = await cloudinary.uploader.upload(req.files.customerImage[0]);
+            console.log("cloudinary :" + result)
         }
 
         if (req.files.referee1Image) {
