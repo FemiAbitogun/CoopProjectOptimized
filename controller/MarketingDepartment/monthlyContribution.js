@@ -49,9 +49,9 @@ const createSuscriberAccount = async (req, res) => {
         // console.log(req.files)
 
         if (req.files.customerImage) {
-            console.log(req.files.customerImage)
+           // console.log(req.files.customerImage)
             customerImagePath = req.files.customerImage[0].path;
-           // let result = await cloudinary.uploader.upload(req.files.customerImage);
+           // let result = await cloudinary.uploader.upload(req.files.customerImage[0]);
             //console.log("cloudinary :" + result)
         }
 
