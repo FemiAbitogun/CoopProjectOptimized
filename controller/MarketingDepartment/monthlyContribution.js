@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Suscriber = require('../../model/Management_team/Marketing_department/monthly_registration');
-
+const { cloudinary } = require('../../cloudinary')
 
 const getAllSuscriberAccount = async (req, res) => {
     try {
@@ -46,18 +46,22 @@ const createSuscriberAccount = async (req, res) => {
         let referee2ImagePath = null;
         let customerImagePath = null;
 
-      // console.log(req.files)
+        // console.log(req.files)
 
         if (req.files.customerImage) {
-
+            console.log(req.files.customerImage)
             customerImagePath = req.files.customerImage[0].path;
+            let result = await cloudinary.uploader.upload(req.files.customerImage);
+            console.log("cloudinary :" + result)
         }
 
         if (req.files.referee1Image) {
+            await cloudinary.uploader.upload(req.files.referee1Image);
             referee1ImagePath = req.files.referee1Image[0].path;
         }
 
         if (req.files.referee2Image) {
+            await cloudinary.uploader.upload(req.files.referee2Image);
             referee2ImagePath = req.files.referee2Image[0].path;
         }
 
@@ -195,11 +199,6 @@ const createSuscriberAccount = async (req, res) => {
     }
 
 }
-
-
-
-
-
 
 
 // DELETE USERS
