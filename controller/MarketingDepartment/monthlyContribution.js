@@ -51,7 +51,7 @@ const createSuscriberAccount = async (req, res) => {
         if (req.files.customerImage) {
            // console.log(req.files.customerImage)
             customerImagePath = req.files.customerImage[0].path;
-            let result = await cloudinary.uploader.upload(req.files.customerImage[0]);
+            let result = await cloudinary.uploader.upload(req.files.customerImage[0].path);
             console.log("cloudinary :" + result)
         }
 
@@ -192,7 +192,7 @@ const createSuscriberAccount = async (req, res) => {
 
     catch (err) {
         res.status(500).json({
-            errorMessage: "Process failed!!!"
+            errorMessage: err.message
         })
 
         //console.log(err.message)
