@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Suscriber = require('../../model/Management_team/Marketing_department/monthly_registration');
-const { cloudinary } = require('../../cloudinary')
+const cloudinary = require('../../cloudinary')
 
 const getAllSuscriberAccount = async (req, res) => {
     try {
