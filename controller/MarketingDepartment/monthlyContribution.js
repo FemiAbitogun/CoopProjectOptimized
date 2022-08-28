@@ -42,10 +42,11 @@ const getSuscriberAccountById = async (req, res) => {
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
     try {
-        let result = await cloudinary.uploader.upload( customerImagePath = req.files.customerImage[0].path, {}, (err) => { console.log(err.message) });
-        res.status(200).json({result})
+        let result = await cloudinary.uploader.upload(req.files.customerImage[0].path);  
+        console.log(result);
         
     } catch (error) {
+        console.log(error.message);
         res.status(500).json({error})
     }
    
