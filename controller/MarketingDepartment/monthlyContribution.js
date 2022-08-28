@@ -49,14 +49,14 @@ const createSuscriberAccount = async (req, res) => {
         // console.log(req.files)
 
         if (req.files.customerImage) {
-           // console.log(req.files.customerImage)
+            // console.log(req.files.customerImage)
             customerImagePath = req.files.customerImage[0].path;
-            let result = await cloudinary.uploader.upload(req.files.customerImage[0].path);
+            let result = await cloudinary.uploader.upload(customerImagePath, {}, (err) => { console.log(err.message) });
             console.log("cloudinary :" + result)
         }
 
         if (req.files.referee1Image) {
-           // await cloudinary.uploader.upload(req.files.referee1Image);
+            // await cloudinary.uploader.upload(req.files.referee1Image);
             referee1ImagePath = req.files.referee1Image[0].path;
         }
 
