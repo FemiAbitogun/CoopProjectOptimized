@@ -19,7 +19,6 @@ const getAllSuscriberAccount = async (req, res) => {
 }
 
 
-
 // get suscriber account by id................
 const getSuscriberAccountById = async (req, res) => {
     try {
@@ -68,131 +67,127 @@ const createSuscriberAccount = async (req, res) => {
             console.log(referee2ImagePath);
         }
 
-        // const {
-        //     referalCode,
-        //     branch,
-        //     formNo,
-        //     state,
-        //     unitCode,
+        const {
+            referalCode,
+            branch,
+            formNo,
+            state,
+            unitCode,
 
-        //     fullName,
-        //     residentialAddress,
-        //     email,
-        //     phone,
-        //     occupation,
-        //     maritalStatus,
-        //     religion,
-        //     gender,
-        //     birthday,
-        //     permanentHomeAddress,
-        //     stateOfOrigin,
-        //     LGA,
-        //     homeTown,
-        //     prefferDaysOfMeeting,
-        //     contributionPlan,
-        //     bankName,
-        //     accountNumber,
-        //     BVN,
-        //     meansOfIdentification,
-        //     idCardNo,
-        //     kinFullname,
-        //     kinAddress,
-        //     kinEmail,
-        //     kinPhone,
-        //     kinOccupation,
-        //     kinOfficeAddress,
-        //     kinRelationshipType,
-        //     kinYearOfrelationship,
-
-
-        //     referee1FullName,
-        //     referee1HomeAddress,
-        //     referee1WorkAddress,
-        //     referee1Business,
-        //     referee1Email,
-        //     referee1Religion,
-        //     referee1Phone,
-        //     referee1Relationship,
-
-        //     referee2FullName,
-        //     referee2HomeAddress,
-        //     referee2WorkAddress,
-        //     referee2Business,
-        //     referee2Email,
-        //     referee2Religion,
-        //     referee2Phone,
-        //     referee2Relationship
+            fullName,
+            residentialAddress,
+            email,
+            phone,
+            occupation,
+            maritalStatus,
+            religion,
+            gender,
+            birthday,
+            permanentHomeAddress,
+            stateOfOrigin,
+            LGA,
+            homeTown,
+            prefferDaysOfMeeting,
+            contributionPlan,
+            bankName,
+            accountNumber,
+            BVN,
+            meansOfIdentification,
+            idCardNo,
+            kinFullname,
+            kinAddress,
+            kinEmail,
+            kinPhone,
+            kinOccupation,
+            kinOfficeAddress,
+            kinRelationshipType,
+            kinYearOfrelationship,
 
 
-        // } = req.body;
+            referee1FullName,
+            referee1HomeAddress,
+            referee1WorkAddress,
+            referee1Business,
+            referee1Email,
+            referee1Religion,
+            referee1Phone,
+            referee1Relationship,
 
-    }
-        //     newUserSuscriber = new Suscriber({
+            referee2FullName,
+            referee2HomeAddress,
+            referee2WorkAddress,
+            referee2Business,
+            referee2Email,
+            referee2Religion,
+            referee2Phone,
+            referee2Relationship
+        } = req.body;
 
-        //         customerImagePath,
-        //         referee1ImagePath,
-        //         referee2ImagePath,
+    
+            newUserSuscriber = new Suscriber({
+                customerImagePath,
+                referee1ImagePath,
+                referee2ImagePath,
 
-        //         referalCode,
-        //         state,
-        //         branch,
-        //         formNo,
-        //         unitCode,
+                referalCode,
+                state,
+                branch,
+                formNo,
+                unitCode,
 
+                fullName,
+                residentialAddress,
+                email,
+                phone,
+                occupation,
+                maritalStatus,
+                religion,
+                gender,
+                birthday,
+                permanentHomeAddress,
+                stateOfOrigin,
+                LGA,
+                homeTown,
 
-        //         fullName,
-        //         residentialAddress,
-        //         email,
-        //         phone,
-        //         occupation,
-        //         maritalStatus,
-        //         religion,
-        //         gender,
-        //         birthday,
-        //         permanentHomeAddress,
-        //         stateOfOrigin,
-        //         LGA,
-        //         homeTown,
+                prefferDaysOfMeeting,
+                contributionPlan,
+                bankName,
+                accountNumber,
+                BVN,
+                meansOfIdentification,
+                idCardNo,
+                kinFullname,
+                kinAddress,
+                kinEmail,
+                kinPhone,
+                kinOccupation,
+                kinOfficeAddress,
+                kinRelationshipType,
+                kinYearOfrelationship,
 
-        //         prefferDaysOfMeeting,
-        //         contributionPlan,
-        //         bankName,
-        //         accountNumber,
-        //         BVN,
-        //         meansOfIdentification,
-        //         idCardNo,
-        //         kinFullname,
-        //         kinAddress,
-        //         kinEmail,
-        //         kinPhone,
-        //         kinOccupation,
-        //         kinOfficeAddress,
-        //         kinRelationshipType,
-        //         kinYearOfrelationship,
+                referee1FullName,
+                referee1HomeAddress,
+                referee1WorkAddress,
+                referee1Business,
+                referee1Email,
+                referee1Religion,
+                referee1Phone,
+                referee1Relationship,
 
-        //         referee1FullName,
-        //         referee1HomeAddress,
-        //         referee1WorkAddress,
-        //         referee1Business,
-        //         referee1Email,
-        //         referee1Religion,
-        //         referee1Phone,
-        //         referee1Relationship,
+                referee2FullName,
+                referee2HomeAddress,
+                referee2WorkAddress,
+                referee2Business,
+                referee2Email,
+                referee2Religion,
+                referee2Phone,
+                referee2Relationship
+            })
+            await newUserSuscriber.save();
+            return res.status(201).json("saved successfully");
+        } //const createSuscriberAccount();
 
-        //         referee2FullName,
-        //         referee2HomeAddress,
-        //         referee2WorkAddress,
-        //         referee2Business,
-        //         referee2Email,
-        //         referee2Religion,
-        //         referee2Phone,
-        //         referee2Relationship
-
-        //     })
-        //     await newUserSuscriber.save();
-        //     return res.status(201).json("saved successfully");
-        // } //const createSuscriberAccount();
-
+       
         catch (err) {
             res.status(500).json({
                 errorMessage: err.message
