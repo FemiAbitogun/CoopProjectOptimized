@@ -42,166 +42,169 @@ const getSuscriberAccountById = async (req, res) => {
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
     try {
-
-        let result = await cloudinary.uploader.upload(customerImagePath, {}, (err) => { console.log(err.message) });
-        console.log("cloudinary :" + result)
-
-
-
-        let referee1ImagePath = null;
-        let referee2ImagePath = null;
-        let customerImagePath = null;
-
-        // console.log(req.files)
-
-        if (req.files.customerImage) {
-            // console.log(req.files.customerImage)
-            customerImagePath = req.files.customerImage[0].path;
-         
-        }
-
-        if (req.files.referee1Image) {
-            // await cloudinary.uploader.upload(req.files.referee1Image);
-            referee1ImagePath = req.files.referee1Image[0].path;
-        }
-
-        if (req.files.referee2Image) {
-            //await cloudinary.uploader.upload(req.files.referee2Image);
-            referee2ImagePath = req.files.referee2Image[0].path;
-        }
-
-        const {
-            referalCode,
-            branch,
-            formNo,
-            state,
-            unitCode,
-
-            fullName,
-            residentialAddress,
-            email,
-            phone,
-            occupation,
-            maritalStatus,
-            religion,
-            gender,
-            birthday,
-            permanentHomeAddress,
-            stateOfOrigin,
-            LGA,
-            homeTown,
-            prefferDaysOfMeeting,
-            contributionPlan,
-            bankName,
-            accountNumber,
-            BVN,
-            meansOfIdentification,
-            idCardNo,
-            kinFullname,
-            kinAddress,
-            kinEmail,
-            kinPhone,
-            kinOccupation,
-            kinOfficeAddress,
-            kinRelationshipType,
-            kinYearOfrelationship,
-
-
-            referee1FullName,
-            referee1HomeAddress,
-            referee1WorkAddress,
-            referee1Business,
-            referee1Email,
-            referee1Religion,
-            referee1Phone,
-            referee1Relationship,
-
-            referee2FullName,
-            referee2HomeAddress,
-            referee2WorkAddress,
-            referee2Business,
-            referee2Email,
-            referee2Religion,
-            referee2Phone,
-            referee2Relationship
-
-
-        } = req.body;
-
-
-        newUserSuscriber = new Suscriber({
-
-            customerImagePath,
-            referee1ImagePath,
-            referee2ImagePath,
-
-            referalCode,
-            state,
-            branch,
-            formNo,
-            unitCode,
-
-
-            fullName,
-            residentialAddress,
-            email,
-            phone,
-            occupation,
-            maritalStatus,
-            religion,
-            gender,
-            birthday,
-            permanentHomeAddress,
-            stateOfOrigin,
-            LGA,
-            homeTown,
-
-            prefferDaysOfMeeting,
-            contributionPlan,
-            bankName,
-            accountNumber,
-            BVN,
-            meansOfIdentification,
-            idCardNo,
-            kinFullname,
-            kinAddress,
-            kinEmail,
-            kinPhone,
-            kinOccupation,
-            kinOfficeAddress,
-            kinRelationshipType,
-            kinYearOfrelationship,
-
-            referee1FullName,
-            referee1HomeAddress,
-            referee1WorkAddress,
-            referee1Business,
-            referee1Email,
-            referee1Religion,
-            referee1Phone,
-            referee1Relationship,
-
-            referee2FullName,
-            referee2HomeAddress,
-            referee2WorkAddress,
-            referee2Business,
-            referee2Email,
-            referee2Religion,
-            referee2Phone,
-            referee2Relationship
-
-        })
-        await newUserSuscriber.save();
-        return res.status(201).json("saved successfully");
-    } //const createSuscriberAccount();
-
-    catch (err) {
-        res.status(500).json({
-            errorMessage: err.message
-        })
-
-        //console.log(err.message)
+        let result = await cloudinary.uploader.upload( customerImagePath = req.files.customerImage[0].path, {}, (err) => { console.log(err.message) });
+        res.status(200).json({result})
+        
+    } catch (error) {
+        res.status(500).json({error})
     }
+   
+    // try {
+
+    //     let referee1ImagePath = null;
+    //     let referee2ImagePath = null;
+    //     let customerImagePath = null;
+
+    //     // console.log(req.files)
+
+    //     if (req.files.customerImage) {
+    //         // console.log(req.files.customerImage)
+    //         customerImagePath = req.files.customerImage[0].path;
+         
+    //     }
+
+    //     if (req.files.referee1Image) {
+    //         // await cloudinary.uploader.upload(req.files.referee1Image);
+    //         referee1ImagePath = req.files.referee1Image[0].path;
+    //     }
+
+    //     if (req.files.referee2Image) {
+    //         //await cloudinary.uploader.upload(req.files.referee2Image);
+    //         referee2ImagePath = req.files.referee2Image[0].path;
+    //     }
+
+    //     const {
+    //         referalCode,
+    //         branch,
+    //         formNo,
+    //         state,
+    //         unitCode,
+
+    //         fullName,
+    //         residentialAddress,
+    //         email,
+    //         phone,
+    //         occupation,
+    //         maritalStatus,
+    //         religion,
+    //         gender,
+    //         birthday,
+    //         permanentHomeAddress,
+    //         stateOfOrigin,
+    //         LGA,
+    //         homeTown,
+    //         prefferDaysOfMeeting,
+    //         contributionPlan,
+    //         bankName,
+    //         accountNumber,
+    //         BVN,
+    //         meansOfIdentification,
+    //         idCardNo,
+    //         kinFullname,
+    //         kinAddress,
+    //         kinEmail,
+    //         kinPhone,
+    //         kinOccupation,
+    //         kinOfficeAddress,
+    //         kinRelationshipType,
+    //         kinYearOfrelationship,
+
+
+    //         referee1FullName,
+    //         referee1HomeAddress,
+    //         referee1WorkAddress,
+    //         referee1Business,
+    //         referee1Email,
+    //         referee1Religion,
+    //         referee1Phone,
+    //         referee1Relationship,
+
+    //         referee2FullName,
+    //         referee2HomeAddress,
+    //         referee2WorkAddress,
+    //         referee2Business,
+    //         referee2Email,
+    //         referee2Religion,
+    //         referee2Phone,
+    //         referee2Relationship
+
+
+    //     } = req.body;
+
+
+    //     newUserSuscriber = new Suscriber({
+
+    //         customerImagePath,
+    //         referee1ImagePath,
+    //         referee2ImagePath,
+
+    //         referalCode,
+    //         state,
+    //         branch,
+    //         formNo,
+    //         unitCode,
+
+
+    //         fullName,
+    //         residentialAddress,
+    //         email,
+    //         phone,
+    //         occupation,
+    //         maritalStatus,
+    //         religion,
+    //         gender,
+    //         birthday,
+    //         permanentHomeAddress,
+    //         stateOfOrigin,
+    //         LGA,
+    //         homeTown,
+
+    //         prefferDaysOfMeeting,
+    //         contributionPlan,
+    //         bankName,
+    //         accountNumber,
+    //         BVN,
+    //         meansOfIdentification,
+    //         idCardNo,
+    //         kinFullname,
+    //         kinAddress,
+    //         kinEmail,
+    //         kinPhone,
+    //         kinOccupation,
+    //         kinOfficeAddress,
+    //         kinRelationshipType,
+    //         kinYearOfrelationship,
+
+    //         referee1FullName,
+    //         referee1HomeAddress,
+    //         referee1WorkAddress,
+    //         referee1Business,
+    //         referee1Email,
+    //         referee1Religion,
+    //         referee1Phone,
+    //         referee1Relationship,
+
+    //         referee2FullName,
+    //         referee2HomeAddress,
+    //         referee2WorkAddress,
+    //         referee2Business,
+    //         referee2Email,
+    //         referee2Religion,
+    //         referee2Phone,
+    //         referee2Relationship
+
+    //     })
+    //     await newUserSuscriber.save();
+    //     return res.status(201).json("saved successfully");
+    // } //const createSuscriberAccount();
+
+    // catch (err) {
+    //     res.status(500).json({
+    //         errorMessage: err.message
+    //     })
+
+    //     //console.log(err.message)
+    // }
 
 }
 
