@@ -46,20 +46,18 @@ const createSuscriberAccount = async (req, res) => {
         let referee2ImagePath = null;
         let customerImagePath = null;
 
+        console.log(req.files)
         if (req.files.customerImage) {
             let result = await cloudinary.uploader.upload(req.files.customerImage[0].path);
-            //customerImagePath = req.files.customerImage[0].path;
             customerImagePath = result.secure_url;
             console.log(customerImagePath);
         }
-
         if (req.files.referee1Image) {
             let result2 = await cloudinary.uploader.upload(req.files.referee1Image[0].path);
             //referee1ImagePath = req.files.referee1Image[0].path;
             referee1ImagePath = result2.secure_url;
             console.log(referee1ImagePath);
         }
-
         if (req.files.referee2Image) {
             let result3 = await cloudinary.uploader.upload(req.files.referee2Image[0].path);
             //referee2ImagePath = req.files.referee2Image[0].path;
