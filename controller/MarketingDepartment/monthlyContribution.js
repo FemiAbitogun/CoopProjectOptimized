@@ -50,21 +50,16 @@ const createSuscriberAccount = async (req, res) => {
         if (req.files.customerImage) {
             let result = await cloudinary.uploader.upload(req.files.customerImage[0].path);
             customerImagePath = result.secure_url;
-            console.log(customerImagePath);
         }
         if (req.files.referee1Image) {
             let result2 = await cloudinary.uploader.upload(req.files.referee1Image[0].path);
-            //referee1ImagePath = req.files.referee1Image[0].path;
             referee1ImagePath = result2.secure_url;
-            console.log(referee1ImagePath);
         }
         if (req.files.referee2Image) {
             let result3 = await cloudinary.uploader.upload(req.files.referee2Image[0].path);
-            //referee2ImagePath = req.files.referee2Image[0].path;
             referee2ImagePath = result3.secure_url;
             console.log(referee2ImagePath);
         }
-
         const {
             referalCode,
             branch,
@@ -121,122 +116,113 @@ const createSuscriberAccount = async (req, res) => {
             referee2Relationship
         } = req.body;
 
-    
-            newUserSuscriber = new Suscriber({
-                customerImagePath,
-                referee1ImagePath,
-                referee2ImagePath,
 
-                referalCode,
-                state,
-                branch,
-                formNo,
-                unitCode,
+        newUserSuscriber = new Suscriber({
+            customerImagePath,
+            referee1ImagePath,
+            referee2ImagePath,
 
-                fullName,
-                residentialAddress,
-                email,
-                phone,
-                occupation,
-                maritalStatus,
-                religion,
-                gender,
-                birthday,
-                permanentHomeAddress,
-                stateOfOrigin,
-                LGA,
-                homeTown,
+            referalCode,
+            state,
+            branch,
+            formNo,
+            unitCode,
 
-                prefferDaysOfMeeting,
-                contributionPlan,
-                bankName,
-                accountNumber,
-                BVN,
-                meansOfIdentification,
-                idCardNo,
-                kinFullname,
-                kinAddress,
-                kinEmail,
-                kinPhone,
-                kinOccupation,
-                kinOfficeAddress,
-                kinRelationshipType,
-                kinYearOfrelationship,
+            fullName,
+            residentialAddress,
+            email,
+            phone,
+            occupation,
+            maritalStatus,
+            religion,
+            gender,
+            birthday,
+            permanentHomeAddress,
+            stateOfOrigin,
+            LGA,
+            homeTown,
 
-                referee1FullName,
-                referee1HomeAddress,
-                referee1WorkAddress,
-                referee1Business,
-                referee1Email,
-                referee1Religion,
-                referee1Phone,
-                referee1Relationship,
+            prefferDaysOfMeeting,
+            contributionPlan,
+            bankName,
+            accountNumber,
+            BVN,
+            meansOfIdentification,
+            idCardNo,
+            kinFullname,
+            kinAddress,
+            kinEmail,
+            kinPhone,
+            kinOccupation,
+            kinOfficeAddress,
+            kinRelationshipType,
+            kinYearOfrelationship,
 
-                referee2FullName,
-                referee2HomeAddress,
-                referee2WorkAddress,
-                referee2Business,
-                referee2Email,
-                referee2Religion,
-                referee2Phone,
-                referee2Relationship
-            })
-            await newUserSuscriber.save();
-            return res.status(201).json("saved successfully");
-        } //const createSuscriberAccount();
+            referee1FullName,
+            referee1HomeAddress,
+            referee1WorkAddress,
+            referee1Business,
+            referee1Email,
+            referee1Religion,
+            referee1Phone,
+            referee1Relationship,
 
-       
-        catch (err) {
-            res.status(500).json({
-                errorMessage: err.message
-            })
-            
-        }
+            referee2FullName,
+            referee2HomeAddress,
+            referee2WorkAddress,
+            referee2Business,
+            referee2Email,
+            referee2Religion,
+            referee2Phone,
+            referee2Relationship
+        })
+        await newUserSuscriber.save();
+        return res.status(201).json("saved successfully");
+    } //const createSuscriberAccount();
+
+
+    catch (err) {
+        res.status(500).json({
+            errorMessage: err.message
+        })
+
     }
+}
 
 
 
 // DELETE USERS
 const deleteSuscriberAccount = async (req, res) => {
-        try {
-            const id = req.params.id;
-            const user = await Suscriber.findByIdAndDelete(id)
-
-            if (user.customerImagePath !== null) {
-                fs.rmSync(user.customerImagePath);
-            }
-            if (user.referee1ImagePath !== null) {
-                fs.rmSync(user.referee1ImagePath);
-            }
-            if (user.referee2ImagePath !== null) {
-                fs.rmSync(user.referee2ImagePath);
-            }
-
-
-
-
-
-
-
-
-            return res.status(200).json(user)
+    try {
+        const id = req.params.id;
+        const user = await Suscriber.findByIdAndDelete(id);
+        if (user.customerImagePath !== null) {
+            await cloudinary.uploader.destroy(user.customerImagePath);
         }
-        catch (err) {
-            res.status(500).json({
-                errorMessage: " failed to delete user from database...."
-            })
+        if (user.referee1ImagePath !== null) {
+            await cloudinary.uploader.destroy(user.referee1ImagePath);
         }
-
+        if (user.referee2ImagePath !== null) {
+            await cloudinary.uploader.destroy(user.referee2ImagePath);
+        }
+        return res.status(200).json("Delete operation successful")
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: " failed to delete user from database...."
+        })
     }
 
-    module.exports = {
+}
 
-        getAllSuscriberAccount,
-        createSuscriberAccount,
-        deleteSuscriberAccount,
-        getSuscriberAccountById,
+module.exports = {
 
-    };
+    getAllSuscriberAccount,
+    createSuscriberAccount,
+    deleteSuscriberAccount,
+    getSuscriberAccountById,
+
+};
 
 
 

@@ -1,23 +1,34 @@
 
-
 const Suscriber = require('../../../model/Management_team/Marketing_department/monthly_registration');
-
+const cloudinary = require('../../../cloudinary');
 
 const editMonthlySuscriber = async (req, res) => {
     try {
 
-        
+
         let suscriber = await Suscriber.findById(req.params.id);
 
         if (req.files.customerImage) {
+
+            await cloudinary.uploader.destroy(suscriber.customerImagePath);
+            await cloudinary.uploader.upload(req.files.customerImage[0].path);
+
             suscriber.customerImagePath = req.files.customerImage[0].path
         }
 
         if (req.files.referee1Image) {
-            suscriber.referee1ImagePath = req.files.referee1Image[0].path
+
+            await cloudinary.uploader.destroy(suscriber.referee1ImagePath);
+            await cloudinary.uploader.upload(req.files.referee1ImagePath[0].path);
+            
+            suscriber.referee1ImagePath = req.files.referee1ImagePath[0].path;
         }
         if (req.files.referee2Image) {
-            suscriber.referee2ImagePath = req.files.referee2Image[0].path
+            await cloudinary.uploader.destroy(suscriber.referee2ImagePath);
+            await cloudinary.uploader.upload(req.files.referee2ImagePath[0].path);
+        
+            suscriber.referee2ImagePath = req.files.referee2ImagePath[0].path;
+            
         }
 
 
@@ -74,7 +85,7 @@ const editMonthlySuscriber = async (req, res) => {
         suscriber.referee2Relationship = req.body.referee2Relationship;
         await suscriber.save();
 
-        return res.status(200).json({});
+        return res.status(200).json("Succesfully edited");
 
     }
 
@@ -83,7 +94,7 @@ const editMonthlySuscriber = async (req, res) => {
             errorMessage: " error editing suscriber from database...."
         })
 
-        console.log(err.message)
+        
     }
 
 }
